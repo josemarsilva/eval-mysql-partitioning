@@ -78,102 +78,7 @@ tab_vendas      | dt_periodo |                   | Segue a coluna `dt_emissao`. 
 
 * [Passo a passo do provisionamento de uma instância MySQL no Google Cloud SQL](README_GoogleCloudSQL_MySql.md)
 
-### 3.4. Guia para Teste ###
-
-#### 3.4.1. Teste #1: Contar a quantidade de registros ####
-
-O objetivo deste teste é forçar uma situação de leitura FULL TABLE SCAN vs ALL PARTITION e avaliar a performance 
-
-* Execução:
-
-  * Tabela **normal**:
-
-```mysql
-MySQL [evalmysqlpartitioning]> SELECT COUNT(*) FROM tab_venda;
-+----------+
-| count(*) |
-+----------+
-| 10000000 |
-+----------+
-1 row in set (2.28 sec)
-```
-
-  * Tabela **particionada**:
-
-```mysql
-MySQL [evalmysqlpartitioning]> SELECT COUNT(*) FROM tab_venda_part;
-+----------+
-| count(*) |
-+----------+
-| 10000000 |
-+----------+
-1 row in set (4.56 sec)
-```
-
-
-#### 3.4.2. Teste #2: Buscar por uma coluna indexada que não faz parte da chave de partição ####
-
-O objetivo deste teste é forçar uma situação de leitura indexada de uma coluna que não faz parte da chave de partição
-
-* Execução:
-
-  * Tabela **normal**:
-
-```mysql
-MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FROM tab_venda WHERE cliente_id = 1;
-+------------+-----------+----------------+
-| cliente_id | COUNT(id) | SUM(vlr_venda) |
-+------------+-----------+----------------+
-|          1 |     10000 |       10000.00 |
-+------------+-----------+----------------+
-1 row in set (3.88 sec)
-```
-
-  * Tabela **particionada**:
-
-```mysql
-MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FROM tab_venda_part WHERE cliente_id = 1;
-+------------+-----------+----------------+
-| cliente_id | COUNT(id) | SUM(vlr_venda) |
-+------------+-----------+----------------+
-|          1 |     10000 |       10000.00 |
-+------------+-----------+----------------+
-1 row in set (0.14 sec)
-```
-
-
-#### 3.4.3. Teste #3: Buscar por coluna indexada parte da chave de partição ####
-
-O objetivo deste teste é forçar uma situação de leitura indexada de uma coluna que não faz parte da chave de partição
-
-* Execução:
-
-  * Tabela **normal**:
-
-```mysql
-MySQL [evalmysqlpartitioning]> SELECT dt_periodo, COUNT(id), SUM(vlr_venda)  FROM tab_venda WHERE dt_periodo = '2012-12-01';
-+------------+-----------+----------------+
-| dt_periodo | COUNT(id) | SUM(vlr_venda) |
-+------------+-----------+----------------+
-| 2012-12-01 |     94209 |       94209.00 |
-+------------+-----------+----------------+
-1 row in set (2.29 sec)
-```
-
-  * Tabela **particionada**:
-
-```mysql
-MySQL [evalmysqlpartitioning]> SELECT dt_periodo, COUNT(id), SUM(vlr_venda)  FROM tab_venda_part WHERE dt_periodo = '2012-12-01';
-+------------+-----------+----------------+
-| dt_periodo | COUNT(id) | SUM(vlr_venda) |
-+------------+-----------+----------------+
-| 2012-12-01 |     94209 |       94209.00 |
-+------------+-----------+----------------+
-1 row in set (0.33 sec)
-```
-
-
-### 3.5. Guia para Implantação ###
+### 3.4. Guia para Implantação ###
 
 * [Passo #1: Execute o script de criação do banco de dados - 00_ddl_create_database.sql](src/sql/00_ddl_create_database.sql)
 * [Passo #2: Execute o script de criação das tabelas - 01_ddl_create_tables.sql](src/sql/01_ddl_create_tables.sql)
@@ -209,8 +114,102 @@ MySQL [evalmysqlpartitioning]> SELECT dt_periodo, COUNT(id), SUM(vlr_venda)  FRO
 ```
 
 * [Passo #6: Execute o script de particionamento dos dados em uma nova tabela particionada  - 05_dml_insert_partitioned_table.sql](src/sql/05_dml_insert_partitioned_table.sql)
-  * O resultado esperado dever ser semelhante a este abaixo (pode não ser idêntico porque MAX_DT_EMISSAO = CURDATE() )
 
+
+
+### 3.5. Guia para Teste ###
+
+#### 3.5.1. Teste #1: Contar a quantidade de registros ####
+
+O objetivo deste teste é forçar uma situação de leitura FULL TABLE SCAN vs ALL PARTITION e avaliar a performance 
+
+* Execução:
+
+  * Tabela **normal**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT COUNT(*) FROM tab_venda;
++----------+
+| count(*) |
++----------+
+| 10000000 |
++----------+
+1 row in set (2.28 sec)
+```
+
+  * Tabela **particionada**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT COUNT(*) FROM tab_venda_part;
++----------+
+| count(*) |
++----------+
+| 10000000 |
++----------+
+1 row in set (4.56 sec)
+```
+
+
+#### 3.5.2. Teste #2: Buscar por uma coluna indexada que não faz parte da chave de partição ####
+
+O objetivo deste teste é forçar uma situação de leitura indexada de uma coluna que não faz parte da chave de partição
+
+* Execução:
+
+  * Tabela **normal**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FROM tab_venda WHERE cliente_id = 1;
++------------+-----------+----------------+
+| cliente_id | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+|          1 |     10000 |       10000.00 |
++------------+-----------+----------------+
+1 row in set (3.88 sec)
+```
+
+  * Tabela **particionada**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FROM tab_venda_part WHERE cliente_id = 1;
++------------+-----------+----------------+
+| cliente_id | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+|          1 |     10000 |       10000.00 |
++------------+-----------+----------------+
+1 row in set (0.14 sec)
+```
+
+
+#### 3.5.3. Teste #3: Buscar por coluna indexada parte da chave de partição ####
+
+O objetivo deste teste é forçar uma situação de leitura indexada de uma coluna que não faz parte da chave de partição
+
+* Execução:
+
+  * Tabela **normal**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT dt_periodo, COUNT(id), SUM(vlr_venda)  FROM tab_venda WHERE dt_periodo = '2012-12-01';
++------------+-----------+----------------+
+| dt_periodo | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+| 2012-12-01 |     94209 |       94209.00 |
++------------+-----------+----------------+
+1 row in set (2.29 sec)
+```
+
+  * Tabela **particionada**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT dt_periodo, COUNT(id), SUM(vlr_venda)  FROM tab_venda_part WHERE dt_periodo = '2012-12-01';
++------------+-----------+----------------+
+| dt_periodo | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+| 2012-12-01 |     94209 |       94209.00 |
++------------+-----------+----------------+
+1 row in set (0.33 sec)
+```
 
 
 ### 3.6. Guia para Execução ###
