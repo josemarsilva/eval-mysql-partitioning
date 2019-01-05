@@ -3,7 +3,7 @@
 
 Assita ao vídeo:
 
-* https://www.youtube.com/watch?v=mvIE8LkXEEY&feature=youtu.be
+* [Using Google Cloud SQL with Compute Engine](https://www.youtube.com/watch?v=mvIE8LkXEEY&feature=youtu.be)
 
 
 Siga o Passo a Passo:
