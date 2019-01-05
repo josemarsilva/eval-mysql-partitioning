@@ -36,7 +36,7 @@ Atividades previstas:
 
 ### 2.3. Diagrama Modelo de Dados ###
 
-![Diagrama Modelo de Dados](doc/Diagrama%20Modelo%20de%20Dados.jpg)
+![Diagrama Modelo de Dados](doc/Diagrama%20Modelo%20de%20Dados.png)
 
 * Detalhamento das Tabelas:
 
