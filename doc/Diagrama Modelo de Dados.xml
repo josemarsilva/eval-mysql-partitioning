@@ -457,6 +457,9 @@
 <NOTE ID="1010" NoteName="Note_01" XPos="4" YPos="8" NoteText="https://github.com/josemarsilva/eval-mysql-partitioning\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="4" />
 <NOTE ID="1060" NoteName="Note_02" XPos="396" YPos="121" NoteText="{\n  \Atab_cliente\A: [\n    \Aid\A: 1,\n    \Anome\A: \ACliente 1\A,\n    \Aid\A: 2, \n    \Anome\A: \ACliente 2\A, \n               :\n    \Aid\A: 1000,  \n    \Anome\A: \ACliente 1000\A,  \n\n  ]\n}\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="13" />
 <NOTE ID="1061" NoteName="Note_03" XPos="395" YPos="390" NoteText="{\n  \Atab_empresa\A: [\n    \Aid\A: 1, \n    \Anome\A: \AEmpresa 1\A \n    \Aid\A: 2 \n    \Anome\A: \AEmpresa 2\A \n  ]\n}\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="14" />
+<NOTE ID="1093" NoteName="Note_04" XPos="568" YPos="155" NoteText="(*)\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="15" />
+<NOTE ID="1094" NoteName="Note_05" XPos="558" YPos="321" NoteText="(*)\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="16" />
+<NOTE ID="1095" NoteName="Note_06" XPos="2" YPos="521" NoteText="(*) Incompat\237vel  - 4.1. Limita\231\245es e inconvenientes\n" IsLinkedObject="0" IDLinkedModel="-1" Obj_id_Linked="-1" OrderPos="17" />
 </NOTES>
 <IMAGES>
 </IMAGES>
