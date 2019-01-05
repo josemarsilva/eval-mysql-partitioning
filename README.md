@@ -148,7 +148,7 @@ MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FRO
 * [Passo #2: Execute o script de criação das tabelas - 01_ddl_create_tables.sql](src/sql/01_ddl_create_tables.sql)
 * [Passo #3: Execute o script de criação das procedures - 02_ddl_create_procedures.sql](src/sql/02_ddl_create_procedures.sql)
 * [Passo #4: Execute o script de executa as procedures de carga inicial - 03_dml_execute_procedures.sql](src/sql/03_dml_execute_procedures.sql)
-  * Tempo estimado para execução: Dur: **1h** - vCpu: 1; Memória: 3,75 GB; Armaz: 10 GB; CPU-Load: 96%;  
+  * Tempo estimado para execução: Dur: **5 h** - vCpu: 1; Memória: 3,75 GB; Armaz: 10 GB; CPU-Load: 96%;  
   * Observe o [monitoramento de recursos](README_GoogleCloudSQL_DetalheInstanciaDuranteCargaDados.md) durante a carga inicial
 * [Passo #5: Execute o script de verificação das volumetrias carregadas inicialmente - 04_dql_consulta_dados.sql](src/sql/04_dql_consulta_dados.sql)
   * O resultado esperado dever ser semelhante a este abaixo (pode não ser idêntico porque MAX_DT_EMISSAO = CURDATE() )
