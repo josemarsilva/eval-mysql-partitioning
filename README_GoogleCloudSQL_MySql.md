@@ -38,3 +38,14 @@ Siga o Passo a Passo:
 * Passo 10
 ![Passo 10](doc/GoogleCloudSQL-10.PNG)
 
+* Passo 11
+![Passo 11](doc/GoogleCloudSQL-11.PNG)
+
+* Passo 12
+![Passo 12](doc/GoogleCloudSQL-12.PNG)
+
+* Passo 13
+![Passo 13](doc/GoogleCloudSQL-13.PNG)
+
+* Passo 14
+![Passo 14](doc/GoogleCloudSQL-14.PNG)
