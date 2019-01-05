@@ -85,7 +85,10 @@ tab_vendas      | dt_periodo |                   | Segue a coluna `dt_emissao`. 
 
 ### 3.5. Guia para Implantação ###
 
-* n/a
+* [Passo #1: Execute o script de criação do banco de dados - 00_ddl_create_database.sql](src/sql/00_ddl_create_database.sql)
+* [Passo #2: Execute o script de criação das tabelas - 01_ddl_create_tables.sql](src/sql/01_ddl_create_tables.sql)
+* [Passo #3: Execute o script de criação das procedures - 02_ddl_create_procedures.sql](src/sql/02_ddl_create_procedures.sql)
+* [Passo #4: Execute o script de executa as procedures de carga inicial - 03_dml_execute_procedures.sql](src/sql/03_dml_execute_procedures.sql)
 
 
 ### 3.6. Guia para Execução ###
