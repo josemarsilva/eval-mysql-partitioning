@@ -1,12 +1,12 @@
 # README_GoogleCloudSQL_MySql
 
 
-# 1. Assita ao vídeo
+Assita ao vídeo:
 
 * https://www.youtube.com/watch?v=mvIE8LkXEEY&feature=youtu.be
 
 
-# 2. Passo a Passo
+Siga o Passo a Passo:
 
 * Passo 1
 ![Passo 1](doc/GoogleCloudSQL-01.PNG)
