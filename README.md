@@ -247,9 +247,9 @@ A escolha da chave de partição foi feita levando em consideração as premissa
 
 Teste                                                                                                                                     | Cenários (#1; #2)  | Cometário
 ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------
-[Teste #1: Contar quantidade de registros](#341-teste-1-contar-a-quantidade-de-registros)                                                 | 2.28 sec; 4.56 sec | 
-[Teste #2: Buscar coluna indexada não chave partição](#342-teste-2-buscar-por-uma-coluna-indexada-que-não-faz-parte-da-chave-de-partição) | 3.88 sec; 0.14 sec | 
-[Teste #3: Buscar coluna indexada parte da chave partição](#343-teste-3-buscar-por-coluna-indexada-parte-da-chave-de-partição)            | 2.29 sec; 0.33 sec | 
+[Teste #1: Contar quantidade de registros](#341-teste-1-contar-a-quantidade-de-registros)                                                 | 2.28 sec; 4.56 sec | Particionamento perde, pois precisa juntar os pedaços da partição que é mais caro que correr uma única tabela de uma única vez
+[Teste #2: Buscar coluna indexada não chave partição](#342-teste-2-buscar-por-uma-coluna-indexada-que-não-faz-parte-da-chave-de-partição) | 3.88 sec; 0.14 sec | Curioso, particionamento é mais rápido
+[Teste #3: Buscar coluna indexada parte da chave partição](#343-teste-3-buscar-por-coluna-indexada-parte-da-chave-de-partição)            | 2.29 sec; 0.33 sec | Particionamento ganha, separação física da leitura pelas partições
 
 
 ## Referências ##
