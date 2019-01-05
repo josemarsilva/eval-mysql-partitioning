@@ -8,7 +8,7 @@ Este repositório contém os artefatos do projeto **eval-mysql-partitioning** qu
 ### 1.1. Premissas ###
 
 Este projeto tem como premissa:
-* O objetivo é testar a funcionalidade de particionamento, aspectos relativos a tráfego de rede e demais itens serão considerados secundário e contingenciados
+* O objetivo é testar a funcionalidade de particionamento, aspectos relativos a tráfego de rede e demais itens serão desconsiderados e contingenciados
 * Simular uma mesma volumetria e de forma comparativa testar tempo de acesso de acesso indexado (normal), indexado (composto), particionado, acesso completo
 * Simular uma situação comum de negócio na vida de um sistema. Quando ele foi criado havia poucos dados, mas com o crescimento vegetativo do negócio, o passar do tempo e a falta de rotinas de expurgo de dados, o sistema começa a apresentar lentidão.
 
