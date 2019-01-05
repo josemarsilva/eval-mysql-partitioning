@@ -80,7 +80,66 @@ tab_vendas      | dt_periodo |                   | Segue a coluna `dt_emissao`. 
 
 ### 3.4. Guia para Teste ###
 
-* n/a
+#### 3.4.1. Teste #1: Contar a quantidade de registros ####
+
+O objetivo deste teste é forçar uma situação de leitura FULL TABLE SCAN vs ALL PARTITION e avaliar a performance 
+
+* Execução:
+
+  * Tabela **normal**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT COUNT(*) FROM tab_venda;
++----------+
+| count(*) |
++----------+
+| 10000000 |
++----------+
+1 row in set (2.28 sec)
+```
+
+  * Tabela **particionada**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT COUNT(*) FROM tab_venda_part;
++----------+
+| count(*) |
++----------+
+| 10000000 |
++----------+
+1 row in set (4.56 sec)
+```
+
+
+#### 3.4.2. Teste #2: Buscar por uma coluna indexada que não faz parte da chave de partição ####
+
+O objetivo deste teste é forçar uma situação de leitura indexada de uma coluna que não faz parte da chave de partição
+
+* Execução:
+
+  * Tabela **normal**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FROM tab_venda WHERE cliente_id = 1;
++------------+-----------+----------------+
+| cliente_id | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+|          1 |     10000 |       10000.00 |
++------------+-----------+----------------+
+1 row in set (3.88 sec)
+```
+
+  * Tabela **particionada**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FROM tab_venda_part WHERE cliente_id = 1;
++------------+-----------+----------------+
+| cliente_id | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+|          1 |     10000 |       10000.00 |
++------------+-----------+----------------+
+1 row in set (0.14 sec)
+```
 
 
 ### 3.5. Guia para Implantação ###
@@ -118,13 +177,35 @@ tab_vendas      | dt_periodo |                   | Segue a coluna `dt_emissao`. 
 16 rows in set (7.90 sec)
 ```
 
+* [Passo #6: Execute o script de particionamento dos dados em uma nova tabela particionada  - 05_dml_insert_partitioned_table.sql](src/sql/05_dml_insert_partitioned_table.sql)
+  * O resultado esperado dever ser semelhante a este abaixo (pode não ser idêntico porque MAX_DT_EMISSAO = CURDATE() )
+
+
+
 ### 3.6. Guia para Execução ###
 
 * n/a
 
 
 ### 3.7. Guia de Credenciais de Acesso ###
+
 * n/a
+
+
+## 4. Análise ##
+
+### 4.1. Escolha da chave de partição ###
+
+A escolha da chave de partição foi feita levando em consideração as premissas:
+* Possibilidade frequente das queries limitarem-se aos dados de um mesmo `dt_periodo`
+* O [tipo de particionamento](https://dev.mysql.com/doc/refman/8.0/en/partitioning-types.html) escolhido foi _HASH_ com a determinação _LINEAR_ do número de partições, tentando atingir uma partição para cada mês do ano
+
+
+### 4.1. Limitações e inconvenientes ###
+
+* A funcionalidade de AUTO_INCREMENT teve que deixar de ser utilizada
+* A funcionalidade de PRIMARY KEY teve que ser adaptada para agregar todas as colunas da partição
+* A funcionalidade de FOREIGN KEY teve que deixar de ser utilizada
 
 
 ## Referências ##
@@ -132,3 +213,4 @@ tab_vendas      | dt_periodo |                   | Segue a coluna `dt_emissao`. 
 * [Utilizando o MySQL Partitioning](https://www.devmedia.com.br/utilizando-o-mysql-partitioning/16825)
 * [Using Google Cloud SQL with Compute Engine](https://www.youtube.com/watch?v=mvIE8LkXEEY&feature=youtu.be)
 * [Configurando MySQL JDBC Connection com JMeter](https://github.com/josemarsilva/jmeter-beginner-tutorial/blob/master/doc/DatabaseConnection/README.md)
+* [MySQL Reference Manual - Partitioning](https://dev.mysql.com/doc/refman/8.0/en/partitioning.html)
