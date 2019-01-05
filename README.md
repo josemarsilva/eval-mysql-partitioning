@@ -100,4 +100,5 @@ tab_vendas      | dt_periodo |                   | Segue a coluna `dt_emissao`. 
 ## Referências ##
 
 * [Utilizando o MySQL Partitioning](https://www.devmedia.com.br/utilizando-o-mysql-partitioning/16825)
+* [Using Google Cloud SQL with Compute Engine](https://www.youtube.com/watch?v=mvIE8LkXEEY&feature=youtu.be)
 * [Configurando MySQL JDBC Connection com JMeter](https://github.com/josemarsilva/jmeter-beginner-tutorial/blob/master/doc/DatabaseConnection/README.md)
