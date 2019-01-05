@@ -19,7 +19,7 @@ Atividades previstas:
 * Obtenção de um servidor (virtualizado ou não) para o banco de dados MySQL
 * Criação das tabelas e stored procedures no banco de dados MySQL
 * Carregar as tabelas do teste com uma volumetria elevada e distribuição desejada para os testes
-* Executar diversos cenários de testes, aferir as principais métricas e tabular os resultados
+* Executar diversos cenários de testes, aferir as principais métricas, tabular os resultados e analisá-los
 
 
 ### 2. Documentação ###
@@ -206,6 +206,15 @@ A escolha da chave de partição foi feita levando em consideração as premissa
 * A funcionalidade de AUTO_INCREMENT teve que deixar de ser utilizada
 * A funcionalidade de PRIMARY KEY teve que ser adaptada para agregar todas as colunas da partição
 * A funcionalidade de FOREIGN KEY teve que deixar de ser utilizada
+
+
+### 4.3. Análise Comparativa ###
+
+Teste                                                        | Tempo      | Cometário
+------------------------------------------------------------ | ---------- | ------------------------------------------------------------
+Teste #1: Contar quantidade de registros                     |            | 
+Teste #2: Buscar coluna indexada não chave partição          |            | 
+Teste #3: Buscar coluna indexada parte da chave partição     |            | 
 
 
 ## Referências ##
