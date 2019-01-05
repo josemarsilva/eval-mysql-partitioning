@@ -142,6 +142,37 @@ MySQL [evalmysqlpartitioning]> SELECT cliente_id, COUNT(id), SUM(vlr_venda)  FRO
 ```
 
 
+#### 3.4.3. Teste #3: Buscar por coluna indexada parte da chave de partição ####
+
+O objetivo deste teste é forçar uma situação de leitura indexada de uma coluna que não faz parte da chave de partição
+
+* Execução:
+
+  * Tabela **normal**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT dt_periodo, COUNT(id), SUM(vlr_venda)  FROM tab_venda WHERE dt_periodo = '2012-12-01';
++------------+-----------+----------------+
+| dt_periodo | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+| 2012-12-01 |     94209 |       94209.00 |
++------------+-----------+----------------+
+1 row in set (2.29 sec)
+```
+
+  * Tabela **particionada**:
+
+```mysql
+MySQL [evalmysqlpartitioning]> SELECT dt_periodo, COUNT(id), SUM(vlr_venda)  FROM tab_venda_part WHERE dt_periodo = '2012-12-01';
++------------+-----------+----------------+
+| dt_periodo | COUNT(id) | SUM(vlr_venda) |
++------------+-----------+----------------+
+| 2012-12-01 |     94209 |       94209.00 |
++------------+-----------+----------------+
+1 row in set (0.33 sec)
+```
+
+
 ### 3.5. Guia para Implantação ###
 
 * [Passo #1: Execute o script de criação do banco de dados - 00_ddl_create_database.sql](src/sql/00_ddl_create_database.sql)
@@ -210,11 +241,15 @@ A escolha da chave de partição foi feita levando em consideração as premissa
 
 ### 4.3. Análise Comparativa ###
 
-Teste                                                        | Tempo      | Cometário
------------------------------------------------------------- | ---------- | ------------------------------------------------------------
-Teste #1: Contar quantidade de registros                     |            | 
-Teste #2: Buscar coluna indexada não chave partição          |            | 
-Teste #3: Buscar coluna indexada parte da chave partição     |            | 
+* Cenários:
+  * #1: Tabela **normal**
+  * #2: Tabela **particionada**
+
+Teste                                                                                                                                     | Cenários (#1; #2)  | Cometário
+----------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------------------------------------------------
+[Teste #1: Contar quantidade de registros](#341-teste-1-contar-a-quantidade-de-registros)                                                 | 2.28 sec; 4.56 sec | 
+[Teste #2: Buscar coluna indexada não chave partição](#342-teste-2-buscar-por-uma-coluna-indexada-que-não-faz-parte-da-chave-de-partição) | 3.88 sec; 0.14 sec | 
+[Teste #3: Buscar coluna indexada parte da chave partição](#343-teste-3-buscar-por-coluna-indexada-parte-da-chave-de-partição)            | 2.29 sec; 0.33 sec | 
 
 
 ## Referências ##
