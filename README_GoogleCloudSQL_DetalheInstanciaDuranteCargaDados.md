@@ -11,5 +11,3 @@
 ![GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-08.PNG](doc/GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-08.PNG)
 ![GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-09.PNG](doc/GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-09.PNG)
 ![GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-10.PNG](doc/GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-10.PNG)
-![GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-11.PNG](doc/GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-11.PNG)
-![GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-12.PNG](doc/GoogleCloudSQL-DetalheInstanciaDuranteCargaDados-12.PNG)
